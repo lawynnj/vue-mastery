@@ -24,20 +24,16 @@ const template = `
         :style="{ backgroundColor: variant.variantColor }"
         @mouseover="updateProduct(index)">
       </div>
-    
+
       <button 
         v-on:click="addToCart" 
         :disabled="!inStock"
         :class="{ disabledButton: !inStock }">
         Add to Cart
       </button>
-      <button 
-        v-on:click="removeFromCart" 
-      >
-        Remove from Cart
-      </button>
+
+      <product-tabs :reviews="reviews"></product-tabs>
     </div>
-    <product-tabs :reviews="reviews"></product-tabs>
   </div>
 `;
 
@@ -77,10 +73,6 @@ Vue.component('product', {
     addToCart() {
       this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
       this.variants[this.selectedVariant].variantQuantity -= 1
-    },
-    removeFromCart() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
-      this.variants[this.selectedVariant].variantQuantity += 1
     },
     updateProduct(index) {
       this.selectedVariant = index
@@ -138,6 +130,7 @@ const productReviewTemplate = `
     <p>
       <input type="submit" value="Submit">  
     </p>    
+  
   </form>
 `
 Vue.component('product-review', {
@@ -159,7 +152,7 @@ Vue.component('product-review', {
           review: this.review,
           rating: this.rating
         }
-
+        debugger;
         eventBus.$emit('submit-review', productReview)
         this.name = null
         this.review = null
@@ -187,14 +180,15 @@ const tabsTemplate = `
       {{ tab }}
     </span>
     <div v-show="selectedTab === 'Reviews'">
+      <h2> Review </h2>
       <p v-if="!reviews.length"> There are no reviews </p>
-      <ul class="reviews-container">
-        <li v-for="review in reviews" class="review">
+      <ul>
+        <li v-for="review in reviews">
           <p> Reviewer: {{ review.name }} </p>
           <p> Rating: {{ review.rating }} </p>  
           <p>{{ review.review }}</p>  
         </li>
-      </oul>
+      </ul>
     </div>
     <div v-show="selectedTab === 'Make a Review'">
       <product-review></product-review>
@@ -212,7 +206,7 @@ Vue.component('product-tabs', {
   data() {
     return {
       tabs: ['Reviews', 'Make a Review'],
-      selectedTab: 'Reviews',
+      selectedTab: 'Reviews'
     }
   }
 })
@@ -227,13 +221,13 @@ const app = new Vue({
     updateCart(id){
       this.cart.push(id)
     },
-    removeItem(id){
+    removeFromCart(id) {
       if (this.cart.length > 0) {
-        const index = this.cart.indexOf(id)
+        const index = temp.indexOf(id)
         if (index > -1) {
           let temp = [...this.cart]
-          temp.splice(index, 1)
-          this.cart = temp
+          temp.splice(index, 1);
+          this.cart = temp;
         }
       }
     },

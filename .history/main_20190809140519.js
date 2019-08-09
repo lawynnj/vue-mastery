@@ -24,7 +24,7 @@ const template = `
         :style="{ backgroundColor: variant.variantColor }"
         @mouseover="updateProduct(index)">
       </div>
-    
+
       <button 
         v-on:click="addToCart" 
         :disabled="!inStock"
@@ -33,9 +33,10 @@ const template = `
       </button>
       <button 
         v-on:click="removeFromCart" 
-      >
+        >
         Remove from Cart
       </button>
+
     </div>
     <product-tabs :reviews="reviews"></product-tabs>
   </div>

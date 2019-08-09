@@ -24,18 +24,14 @@ const template = `
         :style="{ backgroundColor: variant.variantColor }"
         @mouseover="updateProduct(index)">
       </div>
-    
+
       <button 
         v-on:click="addToCart" 
         :disabled="!inStock"
         :class="{ disabledButton: !inStock }">
         Add to Cart
       </button>
-      <button 
-        v-on:click="removeFromCart" 
-      >
-        Remove from Cart
-      </button>
+
     </div>
     <product-tabs :reviews="reviews"></product-tabs>
   </div>
@@ -77,10 +73,6 @@ Vue.component('product', {
     addToCart() {
       this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
       this.variants[this.selectedVariant].variantQuantity -= 1
-    },
-    removeFromCart() {
-      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
-      this.variants[this.selectedVariant].variantQuantity += 1
     },
     updateProduct(index) {
       this.selectedVariant = index
@@ -226,16 +218,6 @@ const app = new Vue({
   methods: {
     updateCart(id){
       this.cart.push(id)
-    },
-    removeItem(id){
-      if (this.cart.length > 0) {
-        const index = this.cart.indexOf(id)
-        if (index > -1) {
-          let temp = [...this.cart]
-          temp.splice(index, 1)
-          this.cart = temp
-        }
-      }
     },
   }
 })

@@ -1,0 +1,26 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <product 
+      :premium="premium"
+      :reviews="reviews" 
+      @add-to-cart="updateCart"
+      @remove-from-cart="removeFromCart"
+    >
+    </product>
+    <product-tabs :reviews="reviews"></product-tabs>
+    <!-- <product-review @submit-review="addReview">
+    </product-review> -->
+    <div class="cart">
+      <p>
+        Cart({{ cart.length }})</div>
+      </p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -67,12 +67,8 @@ button {
   border: 1px solid #d8d8d8;
 }
 
-.reviews-container {
-  list-style: none;
-}
-
 .review {
-  border: 3px solid gray;
+  border: 1px solid red;
   max-width: 200px;
 }
 input {

@@ -1,44 +1,45 @@
-const eventBus = new Vue()
-
 const template = `
-  <div class="product">
-    
-  <div class="product-image">
-      <img :src="image" :alt="altText" target="_blank">
-    </div>
-
-    <div class="product-info">
-      <h1>{{ title }}</h1>
-      <p v-if="inStock">In Stock</p>
-      <p v-else>Out of stock</p>
-      <p>Shipping: {{ shipping }} </p>
-      
-      <ul>
-        <li v-for="detail in details"> {{ detail }} </li>
-      </ul>
-      
-      <div 
-        class="color-box"
-        v-for="(variant, index) in variants" 
-        :key="variant.variantId"
-        :style="{ backgroundColor: variant.variantColor }"
-        @mouseover="updateProduct(index)">
-      </div>
-    
-      <button 
-        v-on:click="addToCart" 
-        :disabled="!inStock"
-        :class="{ disabledButton: !inStock }">
-        Add to Cart
-      </button>
-      <button 
-        v-on:click="removeFromCart" 
-      >
-        Remove from Cart
-      </button>
-    </div>
-    <product-tabs :reviews="reviews"></product-tabs>
+<div class="product">
+<div class="product-image">
+  <img :src="image" :alt="altText" target="_blank">
+</div>
+<div class="product-info">
+  <h1>{{ title }}</h1>
+  <p v-if="inStock">In Stock</p>
+  <p v-else>Out of stock</p>
+  <p>Shipping: {{ shipping }} </p>
+  <ul>
+    <li v-for="detail in details"> {{ detail }} </li>
+  </ul>
+  <div 
+    v-for="(variant, index) in variants" 
+    :key="variant.variantId"
+    class="color-box"
+    :style="{ backgroundColor: variant.variantColor }"
+    @mouseover="updateProduct(index)">
   </div>
+  <button 
+    v-on:click="addToCart" 
+    :disabled="!inStock"
+    :class="{ disabledButton: !inStock }">
+    Add to Cart
+  </button>
+  <button 
+    v-on:click="removeFromCart">
+  Remove From Cart
+  </button>
+  <div>
+    <h2> Review </h2>
+    <p v-if="!reviews.length"> There are no reviews </p>
+    <ul>
+      <li v-for="review in reviews">
+        <p> Reviewer: {{ review.name }} </p>
+        <p> Rating: {{ review.rating }} </p>  
+        <p>{{ review.review }}</p>  
+      </li>
+    </ul>
+  </div>
+</div>
 `;
 
 Vue.component('product', {
@@ -48,6 +49,10 @@ Vue.component('product', {
       type: Boolean,
       required: true
     },
+    reviews: {
+      type: Array,
+      required: true
+    }
   },
   data() {
     return {
@@ -70,20 +75,20 @@ Vue.component('product', {
           variantQuantity: 10
         },
       ],
-      reviews: []
     }
   },
   methods: {
     addToCart() {
       this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
       this.variants[this.selectedVariant].variantQuantity -= 1
+      // this.cart += 1
+    },
+    updateProduct(index) {
+      this.selectedVariant = index
     },
     removeFromCart() {
       this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
       this.variants[this.selectedVariant].variantQuantity += 1
-    },
-    updateProduct(index) {
-      this.selectedVariant = index
     }
   },
   computed: {
@@ -97,13 +102,9 @@ Vue.component('product', {
       return this.variants[this.selectedVariant].variantQuantity > 0
     },
     shipping() {
+      console.log(this.premium)
       return this.premium ? "Free" : "$2.99"
     }
-  },
-  mounted() {
-    eventBus.$on('submit-review', productReview=> {
-      this.reviews.push(productReview)
-    })
   }
 })
 
@@ -136,8 +137,15 @@ const productReviewTemplate = `
       </select>
     </p>
     <p>
+      <label for="rating">Recommend this product?</label>
+      <input type="radio"  v-model="recommend" value="Yes">Yes <br>
+      <input type="radio" v-model="recommend" value="No">No <br>
+    </p>
+        
+    <p>
       <input type="submit" value="Submit">  
     </p>    
+  
   </form>
 `
 Vue.component('product-review', {
@@ -160,7 +168,7 @@ Vue.component('product-review', {
           rating: this.rating
         }
 
-        eventBus.$emit('submit-review', productReview)
+        this.$emit('submit-review', productReview)
         this.name = null
         this.review = null
         this.rating = null
@@ -175,68 +183,31 @@ Vue.component('product-review', {
   }
 })
 
-const tabsTemplate = `
-  <div>
-    <span 
-      class="tab"
-      :class="{ activeTab: selectedTab === tab }"
-      v-for="(tab, index) in tabs" 
-      :key="index"
-      @click="selectedTab = tab"
-      >
-      {{ tab }}
-    </span>
-    <div v-show="selectedTab === 'Reviews'">
-      <p v-if="!reviews.length"> There are no reviews </p>
-      <ul class="reviews-container">
-        <li v-for="review in reviews" class="review">
-          <p> Reviewer: {{ review.name }} </p>
-          <p> Rating: {{ review.rating }} </p>  
-          <p>{{ review.review }}</p>  
-        </li>
-      </oul>
-    </div>
-    <div v-show="selectedTab === 'Make a Review'">
-      <product-review></product-review>
-    </div>
- </div>
-`
-Vue.component('product-tabs', {
-  props: {
-    reviews: {
-      type: Array,
-      required: true
-    }
-  },
-  template: tabsTemplate,
-  data() {
-    return {
-      tabs: ['Reviews', 'Make a Review'],
-      selectedTab: 'Reviews',
-    }
-  }
-})
-
 const app = new Vue({
   el: '#app',
   data: {
     premium: false,
     cart: [],
+    reviews: []
   },
   methods: {
     updateCart(id){
       this.cart.push(id)
     },
-    removeItem(id){
+    removeFromCart(id) {
       if (this.cart.length > 0) {
-        const index = this.cart.indexOf(id)
+        const index = temp.indexOf(id)
         if (index > -1) {
           let temp = [...this.cart]
-          temp.splice(index, 1)
-          this.cart = temp
+          temp.splice(index, 1);
+          this.cart = temp;
         }
       }
     },
+    addReview(review) {
+      console.log(review);
+      this.reviews.push(review)
+    }
   }
 })
 
