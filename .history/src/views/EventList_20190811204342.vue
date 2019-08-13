@@ -1,0 +1,26 @@
+<template>
+  <div>
+    <h1>Events Listing</h1>
+    <EventCard />
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import EventCard from '@/components/EventCard.vue'
+
+export default {
+  components: {
+    EventCard
+  },
+  created() {
+    axios.get("http://localhost:3000/events")
+      .then(data => {
+        this.data = data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+</script>

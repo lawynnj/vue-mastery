@@ -71,6 +71,84 @@
           "name": "Mary Gordon"
         }
       ]
+    },
+    {
+      "id": 807908,
+      "category": "nature",
+      "title": "Test",
+      "description": "test",
+      "location": "Toronto",
+      "date": "2019-08-01T17:30:00.000Z",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "id": 401831,
+      "category": "nature",
+      "title": "test2",
+      "description": "tst",
+      "location": "test",
+      "date": "2019-08-02T17:31:00.000Z",
+      "time": "4:00",
+      "attendees": []
+    },
+    {
+      "id": 471831,
+      "category": "animal welfare",
+      "title": "test3",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 381520,
+      "category": "education",
+      "title": "test",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 464751,
+      "category": "housing",
+      "title": "test",
+      "description": "test",
+      "location": "",
+      "date": "2019-08-01T17:37:00.000Z",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "id": 686370,
+      "category": "food",
+      "title": "asd",
+      "description": "asd",
+      "location": "asd",
+      "date": "2019-08-01T17:38:00.000Z",
+      "time": "2:00",
+      "attendees": []
+    },
+    {
+      "id": 607974,
+      "user": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "category": "",
+      "organizer": {
+        "id": "abc123",
+        "name": "Adam"
+      },
+      "title": "",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }
