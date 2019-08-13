@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventList.vue EventList should render correctly 1`] = `
+<div
+  class="event-show"
+>
+  <div
+    class="event-header"
+  >
+    <span
+      class="eyebrow"
+    >
+      @ on 
+    </span>
+     
+    <h1
+      class="title"
+    >
+      
+    </h1>
+     
+    <h5>
+      Organized by 
+    </h5>
+     
+    <h5>
+      Category: 
+    </h5>
+  </div>
+   
+  <baseicon
+    name="map"
+  >
+    <h2>
+      Location
+    </h2>
+  </baseicon>
+   
+  <address>
+    
+  </address>
+   
+  <h2>
+    Event details
+  </h2>
+   
+  <p>
+    
+  </p>
+   
+  <h2>
+    
+    Attendees
+    
+    <span
+      class="badge -fill-gradient"
+    >
+      0
+    </span>
+  </h2>
+   
+  <ul
+    class="list-group"
+  />
+</div>
+`;

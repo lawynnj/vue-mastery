@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <NavBar/>
-    <router-view/>
+    <NavBar />
+    <!-- <NotificationContainer /> -->
+    <router-view :key="$route.fullPath" />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+import NotificationContainer from '@/components/NotificationContainer.vue'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    NotificationContainer
   }
 }
 </script>
@@ -29,7 +32,7 @@ body {
 }
 #app {
   box-sizing: border-box;
-  width: 500px;
+  width: 700px;
   padding: 0 20px 20px;
   margin: 0 auto;
 }

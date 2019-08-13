@@ -3,13 +3,13 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-import BaseIcon from '@/components/BaseIcon'
-
-Vue.component('BaseIcon', BaseIcon)
+import store from './store/store.js'
+import 'nprogress/nprogress.css'
 
 Vue.config.productionTip = false
 
+// global components
+// Exposes any component that contains base in it's file name to the global vue object
 const requireComponent = require.context(
   './components',
   false,
@@ -26,8 +26,9 @@ requireComponent.keys().forEach(fileName => {
   Vue.component(componentName, componentConfig.default || componentConfig)
 })
 
+// Configure the app with a router, store and the root component to render at the #app element
 new Vue({
   router,
-  store,
+  store, // Vuex
   render: h => h(App)
 }).$mount('#app')

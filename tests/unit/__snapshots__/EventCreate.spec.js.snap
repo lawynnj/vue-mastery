@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EventCreate EventCreate renders correctly 1`] = `
+<div
+  class="event-create"
+>
+  <h1>
+    Create Component
+  </h1>
+   
+  <form>
+    <label>
+      Select a category
+    </label>
+     
+    <select />
+     
+    <h3>
+      Name & describe your event
+    </h3>
+     
+    <div
+      class="field"
+    >
+      <label>
+        Title
+      </label>
+       
+      <input
+        placeholder="Add an event title"
+        type="text"
+      />
+    </div>
+     
+    <div
+      class="field"
+    >
+      <label>
+        Description
+      </label>
+       
+      <input
+        placeholder="Add a description"
+        type="text"
+      />
+    </div>
+     
+    <h3>
+      Where is your event?
+    </h3>
+     
+    <div
+      class="field"
+    >
+      <label>
+        Location
+      </label>
+       
+      <input
+        placeholder="Add a location"
+        type="text"
+      />
+    </div>
+     
+    <h3>
+      When is your event?
+    </h3>
+     
+    <div
+      class="field"
+    >
+      <label>
+        Date
+      </label>
+       
+      <datepicker-stub
+        format="dd MMM yyyy"
+        language="[object Object]"
+        maximumview="year"
+        minimumview="day"
+        placeholder="Select a date"
+        value=""
+      />
+    </div>
+     
+    <div
+      class="field"
+    >
+      <label>
+        Select a time
+      </label>
+       
+      <select>
+        <option>
+          0:00
+        </option>
+        <option>
+          1:00
+        </option>
+        <option>
+          2:00
+        </option>
+        <option>
+          3:00
+        </option>
+        <option>
+          4:00
+        </option>
+        <option>
+          5:00
+        </option>
+        <option>
+          6:00
+        </option>
+        <option>
+          7:00
+        </option>
+        <option>
+          8:00
+        </option>
+        <option>
+          9:00
+        </option>
+        <option>
+          10:00
+        </option>
+        <option>
+          11:00
+        </option>
+        <option>
+          12:00
+        </option>
+        <option>
+          13:00
+        </option>
+        <option>
+          14:00
+        </option>
+        <option>
+          15:00
+        </option>
+        <option>
+          16:00
+        </option>
+        <option>
+          17:00
+        </option>
+        <option>
+          18:00
+        </option>
+        <option>
+          19:00
+        </option>
+        <option>
+          20:00
+        </option>
+        <option>
+          21:00
+        </option>
+        <option>
+          22:00
+        </option>
+        <option>
+          23:00
+        </option>
+      </select>
+    </div>
+     
+    <input
+      class="button -fill-gradient"
+      type="submit"
+      value="Submit"
+    />
+  </form>
+</div>
+`;
